@@ -1,0 +1,26 @@
+<project>
+    <target name="clean">
+        <delete dir=".target" />
+    </target>
+    <target name="editor" depends="clean,glfw,engine">
+        <mkdir dir=".target/classes"/>
+        <javac srcdir="editor" destdir=".target/classes"/>
+    </target>
+    <target name="glfw" depends="clean">
+        <mkdir dir=".target/classes"/>
+        <javac srcdir="glfw" destdir=".target/classes"/>
+    </target>
+    <target name="engine" depends="clean">
+        <mkdir dir=".target/classes"/>
+        <javac srcdir="engine" destdir=".target/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir=".target/jar" />
+        <jar destfile=".target/jar/Jimi.jar" basedir=".target/classes">
+            <manifest>
+                <attribute name="Main-Class" value="dev.levia.jimi.editor.Editor"/>
+            </manifest>
+        </jar>
+    </target>
+</project>
