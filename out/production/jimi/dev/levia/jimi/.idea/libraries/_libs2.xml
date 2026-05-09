@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name=".libs2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/jimi/dev/levia/jimi/.libs/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/jimi/dev/levia/jimi/.libs/glfw.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/jimi/dev/levia/jimi/.libs/vulkan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/jimi/dev/levia/jimi/.libs/assimp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/jimi/dev/levia/jimi/.libs/stb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/production/jimi/dev/levia/jimi/.libs/openal.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

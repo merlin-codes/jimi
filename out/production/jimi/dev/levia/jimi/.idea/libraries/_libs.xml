@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name=".libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.libs/assimp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.libs/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.libs/vulkan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.libs/openal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.libs/glfw.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.libs/stb.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
