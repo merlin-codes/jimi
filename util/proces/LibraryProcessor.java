@@ -1,20 +1,24 @@
 package dev.levia.jimi.util.proces;
 
-import dev.levia.jimi.util.anot.Library;
-import dev.levia.jimi.util.anot.NoPrefix;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.*;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.Modifier;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.util.ElementFilter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import dev.levia.jimi.util.anot.Library;
+import dev.levia.jimi.util.anot.NoPrefix;
 
 @SupportedAnnotationTypes("dev.levia.jimi.util.anot.Library")
 @SupportedSourceVersion(SourceVersion.RELEASE_25)

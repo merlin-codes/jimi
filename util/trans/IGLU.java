@@ -5,9 +5,9 @@ import dev.levia.jimi.util.anot.Library;
 @Library(prefix = "glu", name = "libGLU.so")
 public interface IGLU {
     void lookAt(
-            float eyeX, float eyeY, float eyeZ,
-            float viewX, float viewY, float viewZ,
-            float upX, float upY, float upZ
+            double eyeX, double eyeY, double eyeZ,
+            double viewX, double viewY, double viewZ,
+            double upX, double upY, double upZ
     );
-    void perspective(float angle, double rotation, float x, float y);
+    void perspective(double angle, double rotation, double x, double y);
 }

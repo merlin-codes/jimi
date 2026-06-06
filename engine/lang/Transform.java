@@ -1,6 +1,7 @@
 package dev.levia.jimi.engine.lang;
 
 public class Transform implements Component {
+    public record V4<T>(T x, T y, T z, T w) {}
     public static class Vector3 {
         public float x, y, z;
         public static final Vector3 ZERO = new Vector3(0f, 0f, 0f);

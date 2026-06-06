@@ -1,0 +1,18 @@
+name = "DefaultScene"
+
+# this file will be possible to generate from code
+# this will be default value to use doesnt need to be redefined sub
+rotation = [0.0,0.0,0.0]
+# this will be default value to use doesnt need to be redefined sub
+position = [0.0,0.0,0.0]
+# this will be default value to use doesnt need to be redefined for every sub
+scale = [1.0,1.0,1.0]
+
+[SecondModel]
+source = "assets/model.glb"
+position = [-2.0,1.0,-6.0]
+rotation = [0, 0, 0]
+
+[ThirdModel]
+source = "assets/model.glb"
+position = [-2.0,0.0,-6.0]
