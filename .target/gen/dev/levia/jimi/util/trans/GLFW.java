@@ -15,7 +15,9 @@ public class GLFW {
 
 	private static SymbolLookup lib = SymbolLookup.libraryLookup("libglfw.so", Arena.global());
 
-	public static int GLFW_MAXIMIZED = 131075;
+	public static int MAXIMIZED = 131075;
+	public static int RESIZABLE = 131075;
+	public static int DECORATED = 131077;
 
 	private static final MethodHandle glfwInit = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwInit"), FunctionDescriptor.of(I32));
 	public static int init() { try {  return (int) glfwInit.invokeExact();} catch (Throwable e) { e.printStackTrace();  return 0;}}
@@ -103,8 +105,5 @@ public class GLFW {
 
 	private static final MethodHandle glfwGetClipboardString = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetClipboardString"), FunctionDescriptor.of(ADDRESS, ADDRESS ));
 	public static java.lang.foreign.MemorySegment getClipboardString(java.lang.foreign.MemorySegment window) { try {  return (java.lang.foreign.MemorySegment) glfwGetClipboardString.invokeExact(window);} catch (Throwable e) { e.printStackTrace(); return MemorySegment.NULL;}}
-
-	private static final MethodHandle GlfwModelReader = Linker.nativeLinker().downcallHandle(lib.findOrThrow("GlfwModelReader"), FunctionDescriptor.of(ADDRESS));
-	public static java.lang.foreign.MemorySegment GlfwModelReader() { try {  return (java.lang.foreign.MemorySegment) GlfwModelReader.invokeExact();} catch (Throwable e) { e.printStackTrace(); return MemorySegment.NULL;}}
 
 }

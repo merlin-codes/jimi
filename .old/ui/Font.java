@@ -1,11 +1,6 @@
 package dev.levia.jimi.engine.ui;
 
-public record Font(
-        int width,
-        int height,
-        String characters,
-        int pointer
-) {
+public record Font( int width, int height, String characters, int pointer ) {
     public int charWidth() {
         return width / (characters.length()-1);
     }

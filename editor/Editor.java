@@ -1,12 +1,11 @@
 package dev.levia.jimi.editor;
 
-import java.util.List;
-
-import dev.levia.jimi.engine.fs.FileManager;
-import dev.levia.jimi.engine.input.Input;
-import dev.levia.jimi.engine.ui.SearchMenu;
-import dev.levia.jimi.engine.ui.View;
-import dev.levia.jimi.util.trans.GLFW;
+import dev.levia.jimi.engine.win.OpenGLWindow;
+import dev.levia.jimi.engine.win.Window;
 
 public class Editor {
+    static void main() {
+        var window = new OpenGLWindow("Jimi Editor", Window.P720, Window.MAXIMIZED_WINDOW);
+        window.start();
+    }
 }

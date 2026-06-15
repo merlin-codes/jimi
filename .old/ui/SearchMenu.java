@@ -6,10 +6,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 import dev.levia.jimi.engine.input.Input;
-import dev.levia.jimi.engine.render.Render;
 import dev.levia.jimi.util.trans.GLFW;
 
 import static java.lang.Math.max;

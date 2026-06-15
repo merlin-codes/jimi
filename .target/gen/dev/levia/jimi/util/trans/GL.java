@@ -40,6 +40,7 @@ public class GL {
 	public static int GL_BLEND = 3042;
 	public static int GL_SRC_ALPHA = 770;
 	public static int GL_ONE_MINUS_SRC_ALPHA = 771;
+	public static int GL_TRIANGLE_STRIP = 5;
 	public static java.lang.foreign.MemorySegment NULL = null;
 
 	private static final MethodHandle glViewport = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glViewport"), FunctionDescriptor.ofVoid(I32, I32, I32, I32 ));
@@ -158,5 +159,17 @@ public class GL {
 
 	private static final MethodHandle glColor4f = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glColor4f"), FunctionDescriptor.ofVoid(F32, F32, F32, F32 ));
 	public static void color4f(float r, float g, float b, float a) { try { glColor4f.invokeExact(r, g, b, a);} catch (Throwable e) { e.printStackTrace(); }}
+
+	private static final MethodHandle glGenerateMipmap = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glGenerateMipmap"), FunctionDescriptor.ofVoid(I32 ));
+	public static void generateMipmap(int type) { try { glGenerateMipmap.invokeExact(type);} catch (Throwable e) { e.printStackTrace(); }}
+
+	private static final MethodHandle glDrawArraysInstanced = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glDrawArraysInstanced"), FunctionDescriptor.ofVoid(I32, I32, I32, I32 ));
+	public static void drawArraysInstanced(int mode, int first, int count, int instanceCount) { try { glDrawArraysInstanced.invokeExact(mode, first, count, instanceCount);} catch (Throwable e) { e.printStackTrace(); }}
+
+	private static final MethodHandle glPushMatrix = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glPushMatrix"), FunctionDescriptor.ofVoid());
+	public static void pushMatrix() { try { glPushMatrix.invokeExact();} catch (Throwable e) { e.printStackTrace(); }}
+
+	private static final MethodHandle glPopMatrix = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glPopMatrix"), FunctionDescriptor.ofVoid());
+	public static void popMatrix() { try { glPopMatrix.invokeExact();} catch (Throwable e) { e.printStackTrace(); }}
 
 }

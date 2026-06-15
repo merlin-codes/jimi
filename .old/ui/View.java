@@ -6,7 +6,6 @@ import dev.levia.jimi.engine.lang.Transform;
 import dev.levia.jimi.engine.render.Render;
 import dev.levia.jimi.util.trans.GL;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class View extends Menu {
     public View(Render render, int x, int y, int width, int height) {
         super(render, x, y, width, height);
         try {
-            model = GlbModelLoader.load(Paths.get("assets/model.glb"));
+            model = GlbModelLoader.load(Paths.get("model.glb"));
         } catch (Exception e) {
             System.err.println("Failed to load model: " + e.getMessage());
         }

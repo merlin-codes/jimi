@@ -10,7 +10,7 @@ import dev.levia.jimi.util.anot.NoPrefix;
  */
 @Library(name = "libglfw.so", prefix = "glfw")
 public interface IGLFW {
-    final static int GLFW_MAXIMIZED = 0x00020003;
+    final static int MAXIMIZED = 0x00020003, RESIZABLE = 0x00020003, DECORATED = 0x00020005;
 
     int init();
     void initHint(int hint, int value);
@@ -43,7 +43,4 @@ public interface IGLFW {
     void setWindowMonitor(MemorySegment window, MemorySegment monitor, int xpos, int ypos, int width, int height, int refreshRate);
     void setClipboardString(MemorySegment window, MemorySegment string);
     MemorySegment getClipboardString(MemorySegment window);
-
-    @NoPrefix
-    MemorySegment GlfwModelReader();
 }

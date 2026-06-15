@@ -1,4 +1,4 @@
-package dev.levia.jimi.engine.fs;
+package dev.levia.jimi.engine.input;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,19 +16,14 @@ import javax.imageio.ImageIO;
 
 public class FileManager {
 
-    private static final GraphicsEnvironment environment =
-        GraphicsEnvironment.getLocalGraphicsEnvironment();
-    public static final String text =
-        " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/.,-;:(){}[]";
+    private static final GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    public static final String text = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/.,-;:(){}[]";
 
     public static List<String> findAllFilesEndingWith(String ending) {
         return findAllFilesEndingWith(Path.of("."), ending.toLowerCase());
     }
 
-    public static List<String> findAllFilesEndingWith(
-        Path path,
-        String ending
-    ) {
+    public static List<String> findAllFilesEndingWith(Path path, String ending) {
         var list = new ArrayList<String>();
         try {
             var files = Files.list(path);
@@ -47,11 +42,11 @@ public class FileManager {
         // return List.of();
     }
 
-    public static void imageFromFont(String name, float size) {
-        IO.println(name);
+    public static BufferedImage imageFromFont(String path, float size) {
+        IO.println(path);
         try {
             // should find the ending of the filename and define FontType
-            var real_path = Files.newInputStream(Path.of(name));
+            var real_path = Files.newInputStream(Path.of(path));
             var font = Font.createFont(Font.TRUETYPE_FONT, real_path);
             font = font.deriveFont(size);
 
@@ -66,11 +61,7 @@ public class FileManager {
             int width = (int) bounds.getWidth(),
                 height = (int) bounds.getHeight();
 
-            image = new BufferedImage(
-                width,
-                height,
-                BufferedImage.TYPE_INT_ARGB
-            );
+            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             g = image.createGraphics();
             g.setRenderingHint(
                 RenderingHints.KEY_ANTIALIASING,
@@ -82,8 +73,9 @@ public class FileManager {
             g.fillRect(0, 0, width, height);
             g.setColor(new Color(0xFFFFFFFF, true));
             g.drawString(text, 0, (int) -bounds.getY());
-            var file = new File("./" + name.trim() + ".png");
+            var file = new File("./" + path.trim() + ".png");
             ImageIO.write(image, "png", file);
+            return image;
         } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
