@@ -62,6 +62,8 @@ public class ImGUI {
         var font = FileManager.text.toCharArray();
         var fw = 1f/font.length;
         var fontWidth = fontImageSize.width()/font.length;
+        GL.begin(GL.GL_QUADS);
+
 
         for (var t : text) {
             var str = t.toString().toCharArray();
@@ -81,7 +83,7 @@ public class ImGUI {
             }
         }
         var result = buffer.toString();
-        GL.drawArraysInstanced(GL.GL_TRIANGLE_STRIP, 0, 4, result.length());
+        GL.end();
     }
     public static void inputText(AtomicReference<String> input, boolean focus) {
         // check if is focus

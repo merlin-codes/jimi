@@ -8,7 +8,7 @@ import dev.levia.jimi.util.anot.NoPrefix;
 /**
  * this is simple library Proxy just moving on so its not overhead
  */
-@Library(name = "libglfw.so", prefix = "glfw")
+@Library(name = "libglfw", prefix = "glfw")
 public interface IGLFW {
     final static int MAXIMIZED = 0x00020003, RESIZABLE = 0x00020003, DECORATED = 0x00020005;
 

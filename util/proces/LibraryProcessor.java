@@ -2,6 +2,7 @@ package dev.levia.jimi.util.proces;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,8 @@ public class LibraryProcessor extends AbstractProcessor {
                 var _anot = type.getAnnotation(Library.class);
                 assert _anot != null;
                 var prefix = _anot.prefix();
-                var library = _anot.name();
+                var os = System.getProperty("os.name");
+                var library = _anot.name()+(Objects.equals(os, "win") ? ".dll" : Objects.equals(os, "mac") ? ".dylib": ".so");
                 var name = element.getSimpleName().toString().substring(1);
                 var output = new StringBuilder("package "+packName+";\n\n");
 

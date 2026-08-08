@@ -1,4 +1,4 @@
-package dev.levia.jimi.engine.trans;
+package dev.levia.jimi.util.trans;
 
 import java.lang.foreign.AddressLayout;
 import java.lang.foreign.Linker;
@@ -17,6 +17,7 @@ public class NativeHelper {
     public static final ValueLayout.OfFloat F32 = (ValueLayout.OfFloat) Linker.nativeLinker().canonicalLayouts().get("float");
     public static final ValueLayout.OfDouble F64 = (ValueLayout.OfDouble) Linker.nativeLinker().canonicalLayouts().get("double");
     public static final AddressLayout ADDRESS_CHAR = (AddressLayout) Linker.nativeLinker().canonicalLayouts().get("char*");
+
     public interface StructureInC {
         MemoryLayout SIZE();
         default int bytes() {
@@ -43,15 +44,12 @@ public class NativeHelper {
         var counter = 0;
         for (var field : fields) {
             var type = field.getType();
-            if (type == Integer.class) {
-                pStruct.set(I32, counter, (int) field.getAccessor().invoke(target));
-                counter += 4;
+            if (type == int.class) {
+                pStruct.set(I32, 4, (int) field.getAccessor().invoke(target));
             } else if (type == MemoryLayout.class) {
-                pStruct.set(ADDRESS, counter, (MemorySegment) field.getAccessor().invoke(target));
-                counter += 8;
-            } else if (type == Long.class) {
-                pStruct.set(I64, counter, (long) field.getAccessor().invoke(target));
-                counter += 8;
+                pStruct.set(ADDRESS, 8, (MemorySegment) field.getAccessor().invoke(target));
+            } else if (type == long.class) {
+                pStruct.set(I64, 8, (long) field.getAccessor().invoke(target));
             } else {
                 throw new IllegalAccessException("Accessing field that are not yet implemented in struct builder");
             }
