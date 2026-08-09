@@ -4,7 +4,6 @@ import dev.levia.jimi.util.trans.Call;
 import dev.levia.jimi.util.trans.GLFW;
 import java.lang.foreign.MemorySegment;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 

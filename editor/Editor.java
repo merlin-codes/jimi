@@ -1,6 +1,5 @@
 package dev.levia.jimi.editor;
 
-import dev.levia.jimi.engine.win.OpenGLWindow;
 import dev.levia.jimi.engine.win.VulkanWindow;
 import dev.levia.jimi.engine.win.Window;
 
