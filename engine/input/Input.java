@@ -22,7 +22,7 @@ public class Input {
             GLFW.setKeyCallback( window, Call.get( Input.class.getMethod( "onKey", MemorySegment.class, int.class, int.class, int.class, int.class ) ) );
             GLFW.setCursorPosCallback( window, Call.get( Input.class.getMethod( "onMouseMove", MemorySegment.class, double.class, double.class ) ) );
             GLFW.setMouseButtonCallback( window, Call.get( Input.class.getMethod( "onClick", MemorySegment.class, int.class, int.class, int.class ) ) );
-        } catch (Exception e) {
+        } catch (Throwable e) {
             throw new RuntimeException(e);
         }
     }

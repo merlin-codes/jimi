@@ -2,7 +2,7 @@ package dev.levia.jimi.util.trans;
 
 import dev.levia.jimi.util.anot.Library;
 
-@Library(prefix = "glu", name = "libGLU.so")
+@Library(prefix = "glu", name = "libGLU")
 public interface IGLU {
     void lookAt(
             double eyeX, double eyeY, double eyeZ,

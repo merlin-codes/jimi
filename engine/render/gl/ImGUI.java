@@ -2,7 +2,7 @@ package dev.levia.jimi.engine.render.gl;
 
 import dev.levia.jimi.engine.input.FileManager;
 import dev.levia.jimi.engine.render.OpenGL;
-import dev.levia.jimi.engine.trans.NativeHelper;
+import dev.levia.jimi.util.trans.NativeHelper;
 import dev.levia.jimi.engine.win.Window;
 import dev.levia.jimi.util.trans.GL;
 

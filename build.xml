@@ -4,12 +4,7 @@
     </target>
     <target name="editor" depends="engine">
         <mkdir dir=".target/classes" />
-        <javac
-            srcdir="editor"
-            classpath=".target/classes"
-            destdir=".target/classes"
-            includeantruntime="false"
-        >
+        <javac srcdir="editor" classpath=".target/classes" destdir=".target/classes" includeantruntime="false" >
             <compilerarg value="-processor" />
             <compilerarg value="dev.levia.jimi.util.proces.CallbackProcessor" />
             <compilerarg value="-XprintProcessorInfo" />
@@ -19,12 +14,7 @@
     </target>
     <target name="engine" depends="util">
         <mkdir dir=".target/classes" />
-        <javac
-            srcdir="engine"
-            classpath=".target/classes"
-            destdir=".target/classes"
-            includeantruntime="false"
-        >
+        <javac srcdir="engine" classpath=".target/classes" destdir=".target/classes" includeantruntime="false" >
             <compilerarg value="-processor" />
             <compilerarg value="dev.levia.jimi.util.proces.CallbackProcessor" />
             <compilerarg value="-XprintProcessorInfo" />
@@ -35,24 +25,9 @@
     <target name="util" depends="clean">
         <mkdir dir=".target/gen" />
         <mkdir dir=".target/classes" />
-        <javac
-            srcdir="util/anot"
-            classpath=".target/classes"
-            destdir=".target/classes"
-            includeantruntime="false"
-        />
-        <javac
-            srcdir="util/proces"
-            classpath=".target/classes"
-            destdir=".target/classes"
-            includeantruntime="false"
-        />
-        <javac
-            srcdir="util/trans"
-            destdir=".target/classes"
-            classpath=".target/classes"
-            includeantruntime="true"
-        >
+        <javac srcdir="util/anot" classpath=".target/classes" destdir=".target/classes" includeantruntime="false" />
+        <javac srcdir="util/proces" classpath=".target/classes" destdir=".target/classes" includeantruntime="false" />
+        <javac srcdir="util/trans" destdir=".target/classes" classpath=".target/classes" includeantruntime="true" >
             <compilerarg value="-processor" />
             <compilerarg value="dev.levia.jimi.util.proces.LibraryProcessor" />
             <compilerarg value="-s" />
@@ -63,19 +38,10 @@
             <compilerarg value="-Xlint:processing"/>
             -->
         </javac>
-        <javac
-            srcdir=".target/gen"
-            classpath=".target/classes"
-            destdir=".target/classes"
-            includeantruntime="false"
-        />
+        <javac srcdir=".target/gen" classpath=".target/classes" destdir=".target/classes" includeantruntime="false" />
     </target>
     <target name="run" depends="editor">
-        <java
-            classname="dev.levia.jimi.editor.Editor"
-            classpath=".target/classes"
-            fork="true"
-        >
+        <java classname="dev.levia.jimi.editor.Editor" classpath=".target/classes" fork="true" >
             <jvmarg value="--enable-native-access=ALL-UNNAMED" />
         </java>
     </target>
@@ -85,10 +51,7 @@
         <jar destfile=".target/jar/Jimi.jar" basedir=".target/classes">
             <zipgroupfileset dir="lib" includes="*.jar" />
             <manifest>
-                <attribute
-                    name="Main-Class"
-                    value="dev.levia.jimi.editor.Editor"
-                />
+                <attribute name="Main-Class" value="dev.levia.jimi.editor.Editor" />
             </manifest>
         </jar>
     </target>

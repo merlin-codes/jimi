@@ -6,10 +6,10 @@ import dev.levia.jimi.util.trans.GL;
 import dev.levia.jimi.util.trans.GLFW;
 
 public class OpenGLWindow extends Window {
-    public OpenGLWindow(String name, P size, byte flag) { super(name, size, flag); }
+    public OpenGLWindow(String name, P size, byte flag) throws Throwable { super(name, size, flag); }
 
     @Override
-    public void init() {
+    public void init() throws Throwable {
         ImGUI.font("./assets/fonts/RoughenCornerRegular-7RjV.ttf", alloc);
         System.out.println("Font is:"+ImGUI.fontImageSize+" "+ImGUI.fontImageSize.width()/FileManager.text.length());
         GLFW.swapBuffers(windowId);

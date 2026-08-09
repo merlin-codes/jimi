@@ -13,7 +13,7 @@ public class GL {
 	public static final ValueLayout.OfDouble F64 = (ValueLayout.OfDouble) Linker.nativeLinker().canonicalLayouts().get("double");
 	public static final AddressLayout ADDRESS_CHAR = (AddressLayout) Linker.nativeLinker().canonicalLayouts().get("char*");
 
-	private static SymbolLookup lib = SymbolLookup.libraryLookup("libGL.so.1", Arena.global());
+	private static SymbolLookup lib = SymbolLookup.libraryLookup("libGL.so", Arena.global());
 
 	public static int GL_COLOR_BUFFER_BIT = 16384;
 	public static int GL_DEPTH_BUFFER_BIT = 256;

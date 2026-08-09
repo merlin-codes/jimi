@@ -2,9 +2,11 @@ package dev.levia.jimi.util.trans;
 
 import java.lang.foreign.MemorySegment;
 
+import dev.levia.jimi.util.anot.CanFail;
 import dev.levia.jimi.util.anot.Library;
 
-@Library(name = "libGL.so.1", prefix = "gl")
+@Library(name = "libGL", prefix = "gl")
+@CanFail
 public interface IGL {
     final static int GL_COLOR_BUFFER_BIT = 0x00004000, GL_DEPTH_BUFFER_BIT = 0x00000100, GL_PROJECTION = 0x1701, Float = 0x1406, GL_MODELVIEW = 0x1700, GL_TRIANGLES = 0x0004, GL_QUADS = 0x0007, GL_QUAD_STRIP = 0x0008, GL_DEPTH_TEST = 0x0B71, GL_LINES = 0x0001, GL_LINE_LOOP = 0x0002, GL_TEXTURE_2D = 0x0DE1, GL_RGBA = 0x1908, GL_BGRA = 0x80E1, GL_UNSIGNED_BYTE = 0x1401, GL_LINEAR = 0x2601, GL_CLAMP_TO_EDGE = 0x812F, GL_TEXTURE_MAG_FILTER = 0x2800, GL_TEXTURE_MIN_FILTER = 0x2801, GL_TEXTURE_WRAP_S = 0x2802, GL_TEXTURE_WRAP_T = 0x2803, GL_TEXTURE_COORD_ARRAY = 0x8078, GL_BLEND = 0x0BE2, GL_SRC_ALPHA = 0x0302, GL_ONE_MINUS_SRC_ALPHA = 0x0303,
             GL_TRIANGLE_STRIP = 0x0005

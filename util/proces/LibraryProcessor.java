@@ -18,6 +18,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.util.ElementFilter;
 
+import dev.levia.jimi.util.anot.CanFail;
 import dev.levia.jimi.util.anot.Library;
 import dev.levia.jimi.util.anot.NoPrefix;
 
@@ -65,7 +66,7 @@ public class LibraryProcessor extends AbstractProcessor {
                             .append(field.getConstantValue()).append(";\n");
                 }
                 output.append("\n");
-
+                var canFail = type.getAnnotation(CanFail.class) != null;
                 for (var method : ElementFilter.methodsIn(element.getEnclosedElements())) {
                     if (method.getKind() == ElementKind.METHOD){
                         var params = method.getParameters();
@@ -110,18 +111,24 @@ public class LibraryProcessor extends AbstractProcessor {
                         output.append(params.stream()
                                 .map(arg -> arg.asType().toString()+" "+arg.getSimpleName())
                                 .collect(Collectors.joining(", ")) );
-                        // minified
-                        output.append(") { try { ");
-
+                        var last = canFail || method.getAnnotation(CanFail.class) != null;
+                        if (canFail) {
+                            output.append(") { try { ");
+                        } else {
+                            output.append(") throws Throwable {");
+                        }
                         if(!isVoid) output.append(" return (").append(returnType).append(") ");
                         output.append(prefixName).append(".invokeExact(")
                                 .append(params.stream().map(VariableElement::getSimpleName).collect(Collectors.joining(", "))).append(");");
-
-                        output.append("} catch (Throwable e) {");
-                        output.append(" e.printStackTrace(); ");
-                        if (returnType.getKind().isPrimitive()) output.append(" return 0;");
-                        else if (!isVoid) output.append("return MemorySegment.NULL;");
-                        output.append("}}\n\n");
+                        if (canFail){
+                            output.append("} catch (Throwable e) {");
+                            output.append(" e.printStackTrace(); ");
+                            if (returnType.getKind().isPrimitive()) output.append(" return 0;");
+                            else if (!isVoid) output.append("return MemorySegment.NULL;");
+                            output.append("}");
+                        }
+                        output.append("}\n\n");
+                        // minified
                     }
                 }
 

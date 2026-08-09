@@ -28,8 +28,8 @@ public class Window extends Thread {
     public P size;
     public MemorySegment pWidth = MemorySegment.NULL, pHeight = MemorySegment.NULL;
 
-    public Window(String name, P size, byte flag) { this(name, size.width, size.height, flag); }
-    public Window(String name, short width, short height, byte flag) {
+    public Window(String name, P size, byte flag) throws Throwable { this(name, size.width, size.height, flag); }
+    public Window(String name, short width, short height, byte flag) throws Throwable {
         if (GLFW.init() == 0) throw new RuntimeException("Couldn't init GLFW");
         alloc = Arena.ofConfined();
         pWidth = alloc.allocate(I32);
@@ -60,27 +60,27 @@ public class Window extends Thread {
     public void run() {
         // init threads one is for object manipulation, and it should spawn
         // one for each heavy task, like sometimes
-        var start = System.nanoTime();
-        var end = 0L;
-        while (GLFW.windowShouldClose(windowId) == 0) {
-            GLFW.pollEvents();
-            // this is dumb way of doing this, probably need to fix it
-            this.update(FPS.floatValue());
-            end = (start + FPS - System.nanoTime())/1_000_000;
-            // System.out.println("Thread time is: "+end);
-            try {
+        try {
+            var start = System.nanoTime();
+            var end = 0L;
+            while (GLFW.windowShouldClose(windowId) == 0) {
+                GLFW.pollEvents();
+                // this is dumb way of doing this, probably need to fix it
+                this.update(FPS.floatValue());
+                end = (start + FPS - System.nanoTime())/1_000_000;
+                // System.out.println("Thread time is: "+end);
                 if (end > 0f) Thread.sleep(end);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                Thread.currentThread().interrupt(); break;
-            }
-            GLFW.swapBuffers(this.windowId);
-            start = System.nanoTime();
+                GLFW.swapBuffers(this.windowId);
+                start = System.nanoTime();
 
+            }
+            GLFW.destroyWindow(windowId);
+            GLFW.terminate();
+        } catch (Throwable e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
-        GLFW.destroyWindow(windowId);
-        GLFW.terminate();
     }
     public void update(float delta) { }
-    public void init() {}
+    public void init() throws Throwable {}
 }
