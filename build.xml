@@ -55,4 +55,15 @@
             </manifest>
         </jar>
     </target>
+    <!-- STEP 2: Unified Odin + Java Compilation Target -->
+    <target name="odin" depends="util">
+        <mkdir dir=".target/libs" />
+        <!-- 2a. Compile Odin Package into Shared Library -->
+        <exec executable="odin" failonerror="true">
+            <arg value="build" />
+            <arg value="render_odin" />
+            <arg value="-out:.target/libs/render_odin.so"/>
+        </exec>
+        <javac srcdir=".target/gen" classpath=".target/classes" destdir=".target/classes" includeantruntime="false" />
+    </target>
 </project>

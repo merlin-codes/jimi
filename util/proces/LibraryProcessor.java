@@ -112,7 +112,7 @@ public class LibraryProcessor extends AbstractProcessor {
                                 .map(arg -> arg.asType().toString()+" "+arg.getSimpleName())
                                 .collect(Collectors.joining(", ")) );
                         var last = canFail || method.getAnnotation(CanFail.class) != null;
-                        if (canFail) {
+                        if (last) {
                             output.append(") { try { ");
                         } else {
                             output.append(") throws Throwable {");
@@ -120,7 +120,7 @@ public class LibraryProcessor extends AbstractProcessor {
                         if(!isVoid) output.append(" return (").append(returnType).append(") ");
                         output.append(prefixName).append(".invokeExact(")
                                 .append(params.stream().map(VariableElement::getSimpleName).collect(Collectors.joining(", "))).append(");");
-                        if (canFail){
+                        if (last){
                             output.append("} catch (Throwable e) {");
                             output.append(" e.printStackTrace(); ");
                             if (returnType.getKind().isPrimitive()) output.append(" return 0;");

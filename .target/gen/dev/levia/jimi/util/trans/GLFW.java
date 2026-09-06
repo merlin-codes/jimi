@@ -18,6 +18,8 @@ public class GLFW {
 	public static int MAXIMIZED = 131075;
 	public static int RESIZABLE = 131075;
 	public static int DECORATED = 131077;
+	public static int CLIENT_API = 139265;
+	public static int NO_API = 0;
 
 	private static final MethodHandle glfwInit = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwInit"), FunctionDescriptor.of(I32));
 	public static int init() throws Throwable { return (int) glfwInit.invokeExact();}
@@ -32,13 +34,13 @@ public class GLFW {
 	public static java.lang.foreign.MemorySegment createWindow(int width, int height, java.lang.foreign.MemorySegment title, java.lang.foreign.MemorySegment monitor, java.lang.foreign.MemorySegment share) throws Throwable { return (java.lang.foreign.MemorySegment) glfwCreateWindow.invokeExact(width, height, title, monitor, share);}
 
 	private static final MethodHandle glfwWindowShouldClose = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwWindowShouldClose"), FunctionDescriptor.of(I32, ADDRESS ));
-	public static int windowShouldClose(java.lang.foreign.MemorySegment window) throws Throwable { return (int) glfwWindowShouldClose.invokeExact(window);}
+	public static int windowShouldClose(java.lang.foreign.MemorySegment window) { try {  return (int) glfwWindowShouldClose.invokeExact(window);} catch (Throwable e) { e.printStackTrace();  return 0;}}
 
 	private static final MethodHandle glfwDestroyWindow = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwDestroyWindow"), FunctionDescriptor.ofVoid(ADDRESS ));
 	public static void destroyWindow(java.lang.foreign.MemorySegment window) throws Throwable {glfwDestroyWindow.invokeExact(window);}
 
 	private static final MethodHandle glfwPollEvents = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwPollEvents"), FunctionDescriptor.ofVoid());
-	public static void pollEvents() throws Throwable {glfwPollEvents.invokeExact();}
+	public static void pollEvents() { try { glfwPollEvents.invokeExact();} catch (Throwable e) { e.printStackTrace(); }}
 
 	private static final MethodHandle glfwMakeContextCurrent = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwMakeContextCurrent"), FunctionDescriptor.ofVoid(ADDRESS ));
 	public static void makeContextCurrent(java.lang.foreign.MemorySegment window) throws Throwable {glfwMakeContextCurrent.invokeExact(window);}
@@ -47,13 +49,13 @@ public class GLFW {
 	public static void swapInterval(int interval) throws Throwable {glfwSwapInterval.invokeExact(interval);}
 
 	private static final MethodHandle glfwSwapBuffers = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwSwapBuffers"), FunctionDescriptor.ofVoid(ADDRESS ));
-	public static void swapBuffers(java.lang.foreign.MemorySegment window) throws Throwable {glfwSwapBuffers.invokeExact(window);}
+	public static void swapBuffers(java.lang.foreign.MemorySegment window) { try { glfwSwapBuffers.invokeExact(window);} catch (Throwable e) { e.printStackTrace(); }}
 
 	private static final MethodHandle glfwTerminate = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwTerminate"), FunctionDescriptor.ofVoid());
 	public static void terminate() throws Throwable {glfwTerminate.invokeExact();}
 
 	private static final MethodHandle glfwGetFramebufferSize = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetFramebufferSize"), FunctionDescriptor.ofVoid(ADDRESS, ADDRESS, ADDRESS ));
-	public static void getFramebufferSize(java.lang.foreign.MemorySegment monitor, java.lang.foreign.MemorySegment width, java.lang.foreign.MemorySegment height) throws Throwable {glfwGetFramebufferSize.invokeExact(monitor, width, height);}
+	public static void getFramebufferSize(java.lang.foreign.MemorySegment monitor, java.lang.foreign.MemorySegment width, java.lang.foreign.MemorySegment height) { try { glfwGetFramebufferSize.invokeExact(monitor, width, height);} catch (Throwable e) { e.printStackTrace(); }}
 
 	private static final MethodHandle glfwGetPrimaryMonitor = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetPrimaryMonitor"), FunctionDescriptor.of(ADDRESS));
 	public static java.lang.foreign.MemorySegment getPrimaryMonitor() throws Throwable { return (java.lang.foreign.MemorySegment) glfwGetPrimaryMonitor.invokeExact();}
@@ -65,7 +67,7 @@ public class GLFW {
 	public static void getWindowSize(java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment pWidth, java.lang.foreign.MemorySegment pHeight) throws Throwable {glfwGetWindowSize.invokeExact(window, pWidth, pHeight);}
 
 	private static final MethodHandle glfwGetTime = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetTime"), FunctionDescriptor.of(F64));
-	public static double getTime() throws Throwable { return (double) glfwGetTime.invokeExact();}
+	public static double getTime() { try {  return (double) glfwGetTime.invokeExact();} catch (Throwable e) { e.printStackTrace();  return 0;}}
 
 	private static final MethodHandle glfwMaximizeWindow = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwMaximizeWindow"), FunctionDescriptor.ofVoid(ADDRESS ));
 	public static void maximizeWindow(java.lang.foreign.MemorySegment window) throws Throwable {glfwMaximizeWindow.invokeExact(window);}
@@ -92,7 +94,7 @@ public class GLFW {
 	public static void setWindowSizeCallback(java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment callback) throws Throwable {glfwSetWindowSizeCallback.invokeExact(window, callback);}
 
 	private static final MethodHandle glfwGetMouseButton = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetMouseButton"), FunctionDescriptor.of(I32, ADDRESS, I32 ));
-	public static int getMouseButton(java.lang.foreign.MemorySegment window, int button) throws Throwable { return (int) glfwGetMouseButton.invokeExact(window, button);}
+	public static int getMouseButton(java.lang.foreign.MemorySegment window, int button) { try {  return (int) glfwGetMouseButton.invokeExact(window, button);} catch (Throwable e) { e.printStackTrace();  return 0;}}
 
 	private static final MethodHandle glfwSetDropCallback = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwSetDropCallback"), FunctionDescriptor.ofVoid(ADDRESS, ADDRESS ));
 	public static void setDropCallback(java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment callback) throws Throwable {glfwSetDropCallback.invokeExact(window, callback);}
@@ -101,9 +103,18 @@ public class GLFW {
 	public static void setWindowMonitor(java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment monitor, int xpos, int ypos, int width, int height, int refreshRate) throws Throwable {glfwSetWindowMonitor.invokeExact(window, monitor, xpos, ypos, width, height, refreshRate);}
 
 	private static final MethodHandle glfwSetClipboardString = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwSetClipboardString"), FunctionDescriptor.ofVoid(ADDRESS, ADDRESS ));
-	public static void setClipboardString(java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment string) throws Throwable {glfwSetClipboardString.invokeExact(window, string);}
+	public static void setClipboardString(java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment string) { try { glfwSetClipboardString.invokeExact(window, string);} catch (Throwable e) { e.printStackTrace(); }}
 
 	private static final MethodHandle glfwGetClipboardString = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetClipboardString"), FunctionDescriptor.of(ADDRESS, ADDRESS ));
-	public static java.lang.foreign.MemorySegment getClipboardString(java.lang.foreign.MemorySegment window) throws Throwable { return (java.lang.foreign.MemorySegment) glfwGetClipboardString.invokeExact(window);}
+	public static java.lang.foreign.MemorySegment getClipboardString(java.lang.foreign.MemorySegment window) { try {  return (java.lang.foreign.MemorySegment) glfwGetClipboardString.invokeExact(window);} catch (Throwable e) { e.printStackTrace(); return MemorySegment.NULL;}}
+
+	private static final MethodHandle glfwVulkanSupported = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwVulkanSupported"), FunctionDescriptor.of(I32));
+	public static int vulkanSupported() { try {  return (int) glfwVulkanSupported.invokeExact();} catch (Throwable e) { e.printStackTrace();  return 0;}}
+
+	private static final MethodHandle glfwGetRequiredInstanceExtensions = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwGetRequiredInstanceExtensions"), FunctionDescriptor.of(ADDRESS, ADDRESS ));
+	public static java.lang.foreign.MemorySegment getRequiredInstanceExtensions(java.lang.foreign.MemorySegment countPtr) { try {  return (java.lang.foreign.MemorySegment) glfwGetRequiredInstanceExtensions.invokeExact(countPtr);} catch (Throwable e) { e.printStackTrace(); return MemorySegment.NULL;}}
+
+	private static final MethodHandle glfwCreateWindowSurface = Linker.nativeLinker().downcallHandle(lib.findOrThrow("glfwCreateWindowSurface"), FunctionDescriptor.of(I32, ADDRESS, ADDRESS, ADDRESS, ADDRESS ));
+	public static int createWindowSurface(java.lang.foreign.MemorySegment instance, java.lang.foreign.MemorySegment window, java.lang.foreign.MemorySegment allocator, java.lang.foreign.MemorySegment surface) { try {  return (int) glfwCreateWindowSurface.invokeExact(instance, window, allocator, surface);} catch (Throwable e) { e.printStackTrace();  return 0;}}
 
 }

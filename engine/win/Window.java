@@ -64,13 +64,13 @@ public class Window extends Thread {
             var start = System.nanoTime();
             var end = 0L;
             while (GLFW.windowShouldClose(windowId) == 0) {
-                GLFW.pollEvents();
                 // this is dumb way of doing this, probably need to fix it
                 this.update(FPS.floatValue());
                 end = (start + FPS - System.nanoTime())/1_000_000;
                 // System.out.println("Thread time is: "+end);
                 if (end > 0f) Thread.sleep(end);
                 GLFW.swapBuffers(this.windowId);
+                GLFW.pollEvents();
                 start = System.nanoTime();
 
             }

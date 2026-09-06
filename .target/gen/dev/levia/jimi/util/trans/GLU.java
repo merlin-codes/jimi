@@ -17,9 +17,9 @@ public class GLU {
 
 
 	private static final MethodHandle gluLookAt = Linker.nativeLinker().downcallHandle(lib.findOrThrow("gluLookAt"), FunctionDescriptor.ofVoid(F64, F64, F64, F64, F64, F64, F64, F64, F64 ));
-	public static void lookAt(double eyeX, double eyeY, double eyeZ, double viewX, double viewY, double viewZ, double upX, double upY, double upZ) throws Throwable {gluLookAt.invokeExact(eyeX, eyeY, eyeZ, viewX, viewY, viewZ, upX, upY, upZ);}
+	public static void lookAt(double eyeX, double eyeY, double eyeZ, double viewX, double viewY, double viewZ, double upX, double upY, double upZ) { try { gluLookAt.invokeExact(eyeX, eyeY, eyeZ, viewX, viewY, viewZ, upX, upY, upZ);} catch (Throwable e) { e.printStackTrace(); }}
 
 	private static final MethodHandle gluPerspective = Linker.nativeLinker().downcallHandle(lib.findOrThrow("gluPerspective"), FunctionDescriptor.ofVoid(F64, F64, F64, F64 ));
-	public static void perspective(double angle, double rotation, double x, double y) throws Throwable {gluPerspective.invokeExact(angle, rotation, x, y);}
+	public static void perspective(double angle, double rotation, double x, double y) { try { gluPerspective.invokeExact(angle, rotation, x, y);} catch (Throwable e) { e.printStackTrace(); }}
 
 }
